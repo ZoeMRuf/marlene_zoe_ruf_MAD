@@ -6,7 +6,7 @@ fun main (){
     var rightGuessedNumbers: Int = 0;
     var rightPositionedNumbers: Int = 0;
 
-    println("Generated Number: $generatedNumber"); //-> print generatedNumber, unknown during game
+    // println("Generated Number: $generatedNumber"); //-> print generatedNumber, unknown during game
 
     while (!guess){
 
