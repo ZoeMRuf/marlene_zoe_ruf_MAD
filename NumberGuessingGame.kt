@@ -11,9 +11,7 @@ fun main (){
     while (!guess){
 
         print("User Input : " );
-        val userInput = Integer.valueOf(readLine());
-
-        //-> needs a userInput check and try again if the input has TYP-O
+        val userInput:Int? = Integer.valueOf(readLine());
 
         if (generatedNumber == userInput){
 
@@ -25,6 +23,11 @@ fun main (){
             guess = true;
         }
         else {
+            //-> needs a userInput check and try again if the input has TYP-O
+            if (userInput.toString().length < 4 || userInput.toString().length > 4){
+                println("Error: Please try again")
+                continue;
+            }
 
             val userGuessList = userInput.toString().map { it.toString().toInt() }
             val generatedNumberList = generatedNumber.toString().map { it.toString().toInt() }
@@ -51,7 +54,7 @@ fun generateFourDigitNumber(): Int {
     var digitalNumber: Int = 0;
 
     while (index < 4){
-        val randomNumber: Int = randomNumber(randoms);
+        val randomNumber: Int = randoms.random();
 
         when (index) {
             0 -> digitalNumber += randomNumber * 1000
@@ -67,11 +70,14 @@ fun generateFourDigitNumber(): Int {
     return digitalNumber;
 }
 
-val randomNumber = { numberList: MutableList<Int> -> numberList.random() }
+
 
 
 
 /* First Try for NumberGenerator:
+
+val randomNumber = { numberList: MutableList<Int> -> numberList.random() }
+
 fun generateFourDigitNumber(): MutableList<Int> {
     var index: Int = 0;
     val randoms: MutableList<Int> = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7 ,8, 9);
