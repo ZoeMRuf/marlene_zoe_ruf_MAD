@@ -11,12 +11,11 @@ fun main (){
     while (!guess){
 
         print("User Input : " );
-        val userInput:Int? = Integer.valueOf(readLine());
+        val userInput:String? = readLine();
 
-        if (generatedNumber == userInput){
+        if (generatedNumber.toString() == userInput){
 
             println("\n-----------------------------------------------------------")
-
             println("       Your guess -> $userInput | $generatedNumber <- Generated Number")
             println("               !!! Congratulations !!!")
             println("-----------------------------------------------------------")
@@ -25,8 +24,12 @@ fun main (){
         else {
             //-> needs a userInput check and try again if the input has TYP-O
             if (userInput.toString().length < 4 || userInput.toString().length > 4){
-                println("Error: Please try again")
+                println("Error: Please try again");
                 continue;
+            }
+            else if (userInput == "exit"){
+                println("Ending the Game. Good Bye. The Number was: $generatedNumber");
+                return;
             }
 
             val userGuessList = userInput.toString().map { it.toString().toInt() }
@@ -43,7 +46,6 @@ fun main (){
             println("Output: $rightGuessedNumbers:$rightPositionedNumbers")
             rightGuessedNumbers = 0;
             rightPositionedNumbers = 0;
-
         }
     }
 }
@@ -62,11 +64,9 @@ fun generateFourDigitNumber(): Int {
             2 -> digitalNumber += randomNumber * 10
             3 -> digitalNumber += randomNumber * 1
         }
-
         randoms.remove(randomNumber);
         index++;
     }
-
     return digitalNumber;
 }
 
